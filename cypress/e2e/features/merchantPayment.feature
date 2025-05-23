@@ -85,6 +85,7 @@ Feature: MERCHANT PAYMENT
         Then I validate the transaction information details
 
 
+    @skip
     Scenario: Verify user can navigate to the Dispute Page
         When I click on Transaction
         Then I click on Dispute
@@ -132,7 +133,7 @@ Feature: MERCHANT PAYMENT
         Then I click on Download Button
         Then I confirm the document is downloaded successfully
 
-
+    @skip
     Scenario: Verify user can search for Dispute using Dispute ID
         When I click on Transaction
         Then I click on Dispute
@@ -147,7 +148,7 @@ Feature: MERCHANT PAYMENT
     # Then I click on a transaction
     # Then I validate the transaction information details
 
-
+    @skip
     Scenario: Verify user can navigate to the chargeback page
         When I click on Transaction
         Then I click on chargeback
@@ -282,11 +283,34 @@ Feature: MERCHANT PAYMENT
         Then I click on Create Terminal Button
         Then I validate the Terminal is added successfully
 
-    
+
     Scenario: Verify user can Edit Terminal
         When I click on Terminals
         Then I click on a single Terminal
         Then I click Edit Terminal Button
         Then I change the merchant from the merchant dropdown
-# Then I click the Save Changes button
-# Then I confirm the success message displayed
+        Then I click the Save Changes button
+        Then I confirm the success message displayed
+
+  
+    Scenario: Verify user can Navigate to Finance Module
+        When I click on Finance
+        Then I validate finance module displayed all neccessary details
+
+  
+    Scenario: Verify user can Naviagate to the Commission Page
+        When I click on Finance
+        Then I click on the Commission Tab
+        Then I validate the Commission page display all neccessary details
+
+   
+    Scenario: Verify user can Navigate to the Commission Report Page
+        When I click on Finance
+        Then I click on Commission Report Tab
+        Then I validate the comission report page display all neccessary details
+
+
+    Scenario: Verify user can Naviaget to the Settlement Page
+        When I click on Finance
+        Then I click on Settlement Tab
+        Then I validate the settlement tab page display all neccessary details

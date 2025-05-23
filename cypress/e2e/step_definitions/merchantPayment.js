@@ -270,4 +270,34 @@ Then('I click the Save Changes button', () => {
 Then('I confirm the success message displayed', () => {
     merPay.changeSuccess()
 })
+
+
 //FINANCIALS
+
+When('I click on Finance', () => {
+    merPay.clickFinance()
+})
+Then('I validate finance module displayed all neccessary details', () => {
+    merPay.verifyFinance()
+})
+
+Then('I click on the Commission Tab', () => {
+    merPay.clickCommission()
+})
+Then('I validate the Commission page display all neccessary details', () => {
+    merPay.verifyCommission()
+})
+
+Then('I click on Commission Report Tab', () => {
+    merPay.clickCommissionReport()
+})
+Then('I validate the comission report page display all neccessary details', () => {
+    merPay.verifyCommisionReport()
+})
+
+Then('I click on Settlement Tab', () => {
+    merPay.clickSettlementTab()
+})
+Then('I validate the settlement tab page display all neccessary details', () => {
+    merPay.verifySettlementPage()
+})

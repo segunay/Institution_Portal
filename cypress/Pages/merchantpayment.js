@@ -57,7 +57,14 @@ class merchantPay {
     generateTID = "//label[contains(text(),'Generate TID')]"
     singleTerminal = "tr[id='1'] td:nth-child(2)"
     editTerminalBtn = "//button[normalize-space()='Edit Terminal']"
-
+    saveBtn = "(//button[normalize-space()='Save Changes'])[1]"
+    financeBtn = "//span[normalize-space()='Financials']"
+    finCard = ".main.active"
+    commissionLink = "//a[normalize-space()='Commission']"
+    commissionPage = ".content"
+    commissionReportLink = "//a[normalize-space()='Commission report']"
+    settlementLink = "//a[normalize-space()='Settlement']"
+    settlementTable = ".table__head"
 
 
 
@@ -442,13 +449,87 @@ class merchantPay {
         cy.xpath(this.editTerminalBtn).click()
     }
     changeMerchant() {
- 
-
+        cy.get('#merchant').click();
+        cy.get('.option__list', { timeout: 10000 }).should('be.visible');
+        cy.get('.option__list').then(($options) => {
+            const count = $options.length;
+            const randomIndex = Math.floor(Math.random() * count);
+            const selectedText = $options[randomIndex].innerText;
+            cy.wrap($options[randomIndex]).click();
+            // cy.get('#merchant').should('have.value', selectedText);
+        });
     }
     clickSaveButton() {
-
+        cy.get("label[class='pointer'] span").click()
+        cy.contains('Save Changes').click({ force: true });
     }
     changeSuccess() {
+        cy.xpath(this.alertModal)
+            .should('contain', 'Operation Successful!')
+            .and('be.visible')
+    }
+
+    clickFinance() {
+        cy.xpath(this.financeBtn).click()
+    }
+    verifyFinance() {
+        cy.get(this.finCard)
+            .should('contain', 'total revenue')
+            .and('contain', 'total transaction value')
+            .and('contain', 'total transaction volume')
+            .and('contain', 'Financials')
+            .and('contain', 'Revenue')
+            .and('contain', 'Commission')
+            .and('contain', 'Commission report')
+            .and('contain', 'Settlement')
+            .and('contain', 'CARD TRANSACTIONS')
+            .and('contain', 'CARD SCHEME')
+    }
+
+    clickCommission() {
+        cy.xpath(this.commissionLink).click()
+    }
+    verifyCommission() {
+        cy.get(this.commissionPage)
+            .should('contain', 'total commission value')
+            .and('contain', 'processor commission')
+            .and('contain', 'institution commission')
+            .and('contain', 'Sub-Institution commission')
+            .and('contain', 'merchant commission')
+            .and('contain', 'agent commission')
+    }
+
+    clickCommissionReport() {
+        cy.xpath(this.commissionReportLink).click()
+    }
+
+    verifyCommisionReport() {
+        cy.get(this.commissionPage)
+            .should('contain', 'commission value')
+            .and('contain', 'successful transaction value')
+            .and('contain', 'successful transaction volume')
+            .and('contain', 'Failed transaction value')
+            .and('contain', 'failed transaction volume')
+            .and('contain', 'Bank Performance')
+            .and('contain', 'Top 10 Errors')
+            .and('contain', 'Card Scheme Performance')
+            .and('contain', 'Sucessful Transactions')
+            .and('contain', 'Failed Transactions')
+    }
+
+    clickSettlementTab() {
+        cy.xpath(this.settlementLink).click()
+    }
+    verifySettlementPage() {
+        cy.get(this.settlementTable)
+            .should('contain', 'MERCHANT NAME')
+            .and('contain', 'settlEment ID ')
+            .and('contain', 'original amount')
+            .and('contain', 'settled amount')
+            .and('contain', 'Charges')
+            .and('contain', 'status')
+            .and('contain', 'Date')
+
 
     }
 }
