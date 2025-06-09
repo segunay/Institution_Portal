@@ -1,8 +1,5 @@
 Feature: MERCHANT PAYMENT
 
-
-
-
     Background: LOGIN
         Given I am on the home page
         Then I login successfully
