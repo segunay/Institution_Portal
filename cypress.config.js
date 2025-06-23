@@ -1,4 +1,3 @@
-
 const { defineConfig } = require("cypress");
 const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
 const {
@@ -18,6 +17,16 @@ async function setupNodeEvents(on, config) {
     })
   );
 
+  // Configure mochawesome reporter
+  on('after:run', async (results) => {
+    if (results) {
+      await require('fs').writeFileSync(
+        'cypress/results/results.json',
+        JSON.stringify(results)
+      );
+    }
+  });
+
   return config;
 }
 
@@ -31,5 +40,12 @@ module.exports = defineConfig({
     chromeWebSecurity: false,
     specPattern: '**/*.feature',
     setupNodeEvents,
+    reporter: 'mochawesome',
+    reporterOptions: {
+      reportDir: 'cypress/results',
+      overwrite: false,
+      html: false,
+      json: true
+    }
   }
 });

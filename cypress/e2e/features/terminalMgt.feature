@@ -6,7 +6,7 @@ Feature: TERMINAL MANAGEMENT SYSTEM
         Then I am on the dashboard
         Given I Click on Terminal Management
 
-    @only
+ 
     Scenario: Verify user can add a new Device Successfully
     Then I Click Add A New Device
     Then I Enter Serial Number
@@ -17,7 +17,7 @@ Feature: TERMINAL MANAGEMENT SYSTEM
     Then I Click on Add Device Button
     Then I Verify that the Device is Added Successfully
 
-    @only
+  
     Scenario: Verify user can Filter Device Added by Date
     When I click Any Date Button
     Then I filter by Today 
@@ -26,7 +26,7 @@ Feature: TERMINAL MANAGEMENT SYSTEM
     Then I filter by Last Month
     # Then I filter by Custom Date
 
-    
+
     Scenario: Verify user can Lock and Unlock Device Successfully
     When I click on the Lock Icon
     Then I click on Lock Device
@@ -34,7 +34,6 @@ Feature: TERMINAL MANAGEMENT SYSTEM
     Then I click on the Unlock Icon
     Then I click on Unlock Device
     Then I validate the Device is unlocked successfully
-
 
     Scenario: Verify user can Edit Device Successfully
     When I click on the Edit Icon
@@ -52,7 +51,7 @@ Feature: TERMINAL MANAGEMENT SYSTEM
     Then I click on Delete Device on the confirmation Modal
     Then I confirm the Device is deleted successfully
 
-   
+    
     Scenario: Verify user can Export CSV
     When I click on Export CSV
     Then I verify the Download Report Modal
@@ -62,8 +61,8 @@ Feature: TERMINAL MANAGEMENT SYSTEM
 
 
 
-
 #TERMINAL CONFIGURATION
+    @only
     Scenario: Verify user can Bind/Unbind Terminal
     When I click on Terminal Configuration
     Then I click on a Terminal
@@ -78,12 +77,14 @@ Feature: TERMINAL MANAGEMENT SYSTEM
     Then I search for a Terminal using the Terminal ID
     Then I click on the Terminal
 
+    
     Scenario: Verify user can Filter Inactive Terminals and make it Active
     When I click on Remote Assistance
     Then I filter by Inactive terminal
     Then I click on a terminal
     Then I make it Active
 
+    @only
     Scenario: Verify user can Filter Active Terminals and make it Inactive
     When I clicked on Remote Assistance
     Then I filter by Active Terminal
